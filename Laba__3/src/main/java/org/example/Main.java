@@ -77,7 +77,7 @@ public class Main {
         int elements = 0;
         for(int rowIndex = 0; rowIndex < rows; rowIndex++){
             for(int columnIndex = 0; columnIndex < columns; columnIndex++) {
-                if (arr[rowIndex][columnIndex] >= comparison){
+                if (arr[rowIndex][columnIndex] >= comparison && ((rowIndex  + columnIndex) % 2 != 0)){
                     elements++;
                 }
             }
@@ -90,7 +90,7 @@ public class Main {
         foundElements = new int[rows][columns];
         for(int rowIndex = 0; rowIndex < rows; rowIndex++){
             for(int columnIndex = 0; columnIndex < columns; columnIndex++) {
-                if (arr[rowIndex][columnIndex] >= comparison){
+                if (arr[rowIndex][columnIndex] >= comparison && ((rowIndex  + columnIndex) % 2 != 0)){
                     foundElements[rowIndex][columnIndex] = arr[rowIndex][columnIndex];
                 }
             }
