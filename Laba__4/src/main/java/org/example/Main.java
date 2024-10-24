@@ -66,15 +66,18 @@ public class Main {
         int counterAfterMiddle = 0;
         int markElement = 0;
         int iteration = 0;
+        int noMarkElement = 0;
         double middleElement = Math.floor(columns / 2.0);
         boolean flag = false;
         for(int rowIndex = 0; rowIndex < rows; rowIndex++){
             for(int columnIndex = 0; columnIndex < columns; columnIndex++){
                 if(columnIndex != markElement){
-                    if(columnIndex < ((int)middleElement)){
+                    if(noMarkElement < ((int)middleElement)){
                         counterBeforeMiddle += matrix[rowIndex][columnIndex];
-                    } else if (columnIndex > ((int)middleElement)){
+                        noMarkElement++;
+                    } else if (noMarkElement >= ((int)middleElement)){
                         counterAfterMiddle += matrix[rowIndex][columnIndex];
+                        noMarkElement++;
                     }
                 }
                 if(columnIndex == columns - 1){
@@ -84,10 +87,14 @@ public class Main {
                     if(counterBeforeMiddle == counterAfterMiddle){
                         System.out.println("В строке "  + rowIndex);
                         flag = true;
+                    }else{
+                        counterBeforeMiddle = 0;
+                        counterAfterMiddle = 0;
                     }
                     if(iteration == columns){
                         iteration = 0;
                         markElement = 0;
+                        noMarkElement = 0;
                         columnIndex = columns;
                     }
                 }
