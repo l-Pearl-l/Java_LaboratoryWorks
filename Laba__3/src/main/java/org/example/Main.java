@@ -6,24 +6,32 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int iteration = 0;
-        int[][] arr;
+        String outputCycle;
+        Scanner scannerForEndProgram = new Scanner(System.in);
+        do{
+            calculate();
+            System.out.print("Вы хотите остановить выполнение программы?: ");
+            outputCycle = scannerForEndProgram.nextLine();
+        } while(!outputCycle.equals("Да"));
+
+    }
+
+    private static void calculate(){
+        int[][] matrix;
         int comparison;
         int[][] foundElements;
-        while(iteration != 3){
-            int rows = getInput();
-            int columns = getInput();
-            System.out.print("Число для сравнения: ");
-            comparison = getInput();
+        int rows = getInput();
+        int columns = getInput();
+        System.out.print("Число для сравнения: ");
+        comparison = getInput();
 
-            arr = new int[rows][columns];
-            fillArray(arr, rows, columns);
-            searchElementMoreInput(arr, rows, columns, comparison);
-            foundElements = searchPositionElement(arr, rows, columns, comparison);
-            printFoundElements(foundElements, rows, columns);
-            iteration++;
-        }
-
+        matrix = new int[rows][columns];
+        fillArray(matrix, rows, columns);
+        searchElementMoreInput(matrix, rows, columns, comparison);
+        foundElements = searchPositionElement(matrix, rows, columns, comparison);
+        printFoundElements(foundElements, rows, columns);
+        printArray(matrix, rows, columns);
+        printArray(foundElements, rows, columns);
     }
 
     private static int getInput(){
@@ -39,7 +47,7 @@ public class Main {
     }
 
     private static int getRandomNumber(){
-        return (int) (Math.random() * 101 - 50);
+        return (int) ((Math.random() * 100 + 1)  - 50);
     }
 
     private static void fillArray(int[][] arr, int rows, int columns){

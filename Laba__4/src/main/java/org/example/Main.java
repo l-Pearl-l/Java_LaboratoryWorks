@@ -10,13 +10,19 @@ public class Main {
         int rows = getInput();
         int columns = getInput();
         int[][] matrix;
+        String outputCycle;
         Vector<Boolean> vector;
+        Scanner scannerForEndProgram = new Scanner(System.in);
+        do{
+            matrix = createMatrix(rows, columns);
+            vector = createBooleanVector(matrix, rows, columns);
 
-        matrix = createMatrix(rows, columns);
-        vector = createBooleanVector(matrix, rows, columns);
+            printMatrix(matrix, rows, columns);
+            printVector(vector);
+            System.out.print("\nВы хотите завершить выполнение программы?: ");
+            outputCycle = scannerForEndProgram.nextLine();
+        } while(!outputCycle.equals("Да"));
 
-        printMatrix(matrix, rows, columns);
-        printVector(vector);
     }
 
     private static int getInput(){
@@ -31,7 +37,7 @@ public class Main {
     }
 
     private static int getRandomNumber(){
-        return (int) (Math.random() * 101 - 50);
+        return (int) ((Math.random() * 100 + 1) - 50);
     }
 
     private static int[][] createMatrix(int rows, int columns){
